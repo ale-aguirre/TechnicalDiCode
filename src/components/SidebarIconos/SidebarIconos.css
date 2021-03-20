@@ -1,0 +1,41 @@
+.sidebar__Container{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.sidebar__Icono{
+    color: #606060;
+    font-size: large !important;
+}
+
+.sidebar__Title{
+    flex:1;
+    margin-left: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+/* hover al sidebar */
+.sidebar__Container:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.sidebar__Container:hover > .sidebar__Icono{
+    color: red;
+}
+
+.sidebar__Container:hover > .sidebar__Title{
+    font-weight: bold;
+}
+
+/* cuando se selecciona cada icono */
+.sidebar__Container.selected{
+    background-color: lightgray;
+}
+.sidebar__Container.selected > .sidebar__Icono{
+    color: red;
+}
+.sidebar__Container.selected > .sidebar__Title{
+    font-weight: bold;
+}
