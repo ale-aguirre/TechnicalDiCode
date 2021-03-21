@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import VideoCallIcon from "@material-ui/icons/VideoCall";
@@ -12,11 +13,13 @@ const Header = () => {
     <div className="header">
       <div className="header__izquierda">
         <MenuIcon />
-        <img
-          className="header__logo"
-          src="https://i.ibb.co/mcMVvkM/image.png"
-          alt="logo"
-        />
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <img
+            className="header__logo"
+            src="https://i.ibb.co/mcMVvkM/image.png"
+            alt="logo"
+          />
+        </Link>
       </div>
       <div className="header__input">
         <input placeholder="Buscar" type="text" />
@@ -24,10 +27,18 @@ const Header = () => {
       </div>
 
       <div className="header__iconos">
-        <VideoCallIcon className="header__icono"/>
-        <AppsIcon className="header__icono" />
-        <NotificationsIcon className="header__icono"/>
-        <AccountCircleIcon className="header__icono"/>
+        <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
+          <VideoCallIcon className="header__icono" />
+        </Link>
+        <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
+          <AppsIcon className="header__icono" />
+        </Link>
+        <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
+          <NotificationsIcon className="header__icono" />
+        </Link>
+        <Link to="/login" style={{ color: "inherit", textDecoration: "none" }}>
+          <AccountCircleIcon className="header__icono" />
+        </Link>
       </div>
     </div>
   );
