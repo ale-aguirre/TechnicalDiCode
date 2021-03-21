@@ -10,13 +10,14 @@
 }
 
 .header__logo {
-  height: 25px;
+  height: 35px;
   object-fit: contain;
   margin-left: 20px;
 }
 
 .header__izquierda {
   display: flex;
+  align-items: center;
 }
 
 .header__input {
@@ -28,7 +29,8 @@
 }
 .header__input > input {
   flex: 1;
-  border: none;
+  border: 0;
+  outline: none;
 }
 
 .header__iconos {

@@ -1,0 +1,88 @@
+.videoplayer {
+    display: flex;
+    justify-content: center;
+}
+
+.videoplayer__videodetails {
+    flex: 0.8;
+}
+
+.video__imagen{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+}
+.videoplayer__video, .videoplayer__videoinfo {
+    margin: 1% 1% 1% 6%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+.videoplayer__suggested {
+    flex: 0.2;
+    margin-top: 0 !important;
+}
+
+.videoplayer__videoinfo {
+    flex-direction: row;
+}
+
+.videoinfo__channeldesc {
+    color: gray;
+    font-size: small;
+    max-width: 900px;
+}
+
+.videoinfo__stats, .videoinfo__channel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.videoinfo__headline > h1 {
+    font-weight: 400;
+    font-size: large;
+}
+
+.videoinfo__stats > p {
+    font-size: medium;
+    color: gray;
+}
+
+.videoinfo__stats > * {
+    margin-top: 2px;
+}
+
+.videoinfo__likes > * {
+    padding-left: 0;
+    padding-top: 0;
+}
+
+.videoinfo__likes, .videoinfo__channel > div {
+    display: flex;
+    align-items: center;
+}
+
+hr {
+    height: 1px;
+    border: 0;
+    background-color: lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.videoinfo__channelinfo {
+    padding-left: 5px;
+}
+
+.videoinfo__channeltitle {
+    font-size: medium;
+    margin: 2px;
+}
+
+.videoinfo__channelsubs {
+    color: gray;
+    font-size: small;
+    margin: 0;
+}

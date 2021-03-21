@@ -22,7 +22,7 @@
 }
 
 .sidebar__Container:hover > .sidebar__Icono{
-    color: red;
+    color: purple;
 }
 
 .sidebar__Container:hover > .sidebar__Title{
@@ -34,7 +34,7 @@
     background-color: lightgray;
 }
 .sidebar__Container.selected > .sidebar__Icono{
-    color: red;
+    color: purple;
 }
 .sidebar__Container.selected > .sidebar__Title{
     font-weight: bold;
