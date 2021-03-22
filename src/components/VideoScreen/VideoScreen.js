@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useParams } from "react-router";
 import "./VideoScreen.css";
 import VideosRecomendados from "../VideosRecomendados/VideosRecomendados";
@@ -47,7 +47,7 @@ const VideoScreen = () => {
     <div className="videoplayer">
       <div className="videoplayer__videodetails">
         <div className="videoplayer__video">
-          <img className="video__imagen" src={`../images/${id}.jpg`} />
+          <img className="video__imagen" src={`../images/${id}.jpg`} alt={titulo}/>
         </div>
         <div className="videoplayer__videoinfo">
           <div className="videoinfo">

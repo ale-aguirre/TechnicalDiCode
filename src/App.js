@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Login from "./components/Login/Login";
+import Login from "./components/Auth/Login/Login";
 import VideoScreen from "./components/VideoScreen/VideoScreen";
 import VideosRecomendados from "./components/VideosRecomendados/VideosRecomendados";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -10,6 +10,7 @@ import UnderConstruction from './components/UnderConstruction/UnderConstruction'
 //19/03 .- 17:20 (start)
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="app">

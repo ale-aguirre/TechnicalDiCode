@@ -1,0 +1,20 @@
+.perfil__container {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+/* .perfil__card{
+
+}
+.perfil__titulo{
+
+}
+.perfil__info{
+
+} */
+.perfil__botones {
+  display: flex;
+  align-items:center;
+}

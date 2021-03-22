@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import "./VideosR.css";
 import VideoCard from "../VideoCard/VideoCard";
 import {data} from '../../data'
