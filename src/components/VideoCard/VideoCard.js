@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 const VideoCard = ({ id, titulo, canal, vistas, fecha, imagenCanal }) => {
   return (
-    <div className="videocard">
+    <div className="videocard ">
       <Link to={`./video/${id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
         <img
-          className="videocard__image"
+          className="videocard__image "
           src={`./images/${id}.jpg`}
           alt={titulo}
         />

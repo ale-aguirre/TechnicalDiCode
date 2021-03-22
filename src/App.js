@@ -7,6 +7,7 @@ import VideosRecomendados from "./components/VideosRecomendados/VideosRecomendad
 import { BrowserRouter, Route } from "react-router-dom";
 import UnderConstruction from './components/UnderConstruction/UnderConstruction'
 
+
 //19/03 .- 17:20 (start)
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/video/:videoId" component={VideoScreen} />
           <Route exact path="/under" component={UnderConstruction} />
+
         </div>
       </div>
     </BrowserRouter>
