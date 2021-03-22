@@ -7,8 +7,15 @@ import VideoCallIcon from "@material-ui/icons/VideoCall";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Logout from "../Auth/Login/Logout";
+import FaceIcon from "@material-ui/icons/Face";
+
+import { useSelector } from "react-redux";
+import { selectUser } from "../Auth/features/userSlice";
 
 const Header = () => {
+  const user = useSelector(selectUser);
+
   return (
     <div className="header">
       <div className="header__izquierda">
@@ -37,7 +44,12 @@ const Header = () => {
           <NotificationsIcon className="header__icono" />
         </Link>
         <Link to="/login" style={{ color: "inherit", textDecoration: "none" }}>
-          <AccountCircleIcon className="header__icono" />
+          {user ? (
+            <FaceIcon color="primary" />
+          ) : (
+            <AccountCircleIcon className="header__icono" />
+          )}
+          {user ? <Logout /> : null}
         </Link>
       </div>
     </div>
