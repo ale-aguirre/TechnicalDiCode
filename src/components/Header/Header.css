@@ -40,7 +40,7 @@
 
 .header__buscador{
     width: 65px !important;
-    background-color: #fafafa;
+    background-color: #c6c6c6;
     border-left: 1px solid lightgray;
     color: gray;
     cursor:pointer;
