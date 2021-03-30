@@ -1,121 +1,105 @@
-import React, { useMemo } from "react";
-import { useParams } from "react-router";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
+import VideoSidebar from "../VideoSidebar/VideoSidebar";
+import VideoComment from "../VideoComment/VideoComment";
+import VideoDescription from "../VideoDescription/VideoDescription";
+import VideoInfo from "../VideoInfo/VideoInfo";
+import { withRouter } from "react-router-dom";
+import { key } from "../../Utilities";
+import UnfoldMoreIcon from "@material-ui/icons/UnfoldMore";
 import "./VideoScreen.css";
-import VideosRecomendados from "../VideosRecomendados/VideosRecomendados";
-import { data } from "../../data";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import SidebarIconos from "../SidebarIconos/SidebarIconos";
-import ReplyIcon from "@material-ui/icons/Reply";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
-import { Avatar, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
+const VideoScreen = (props) => {
+  const [singleVideo, setSingleVideo] = useState([]);
+  const [comments, setComments] = useState([]);
 
-const getVideosById = (id) => {
-  return data.find((element) => element.id === id);
-};
+  const [expandComments, setExpandComments] = useState("closed");
 
-const VideoScreen = () => {
-  const classes = useStyles();
-  const { videoId } = useParams();
+  const toggleComments = () => {
+    expandComments === "closed"
+      ? setExpandComments("open")
+      : setExpandComments("closed");
+  };
 
-  const video = useMemo(() => getVideosById(videoId), [videoId]);
+  const expandedBlock = {
+    height: "auto",
+  };
+  const videoId = props.match.params.videoId;
 
-  const {
-    id,
-    titulo,
-    descripcion,
-    fecha2,
-    canal,
-    imagenCanal,
-    vistas,
-    like,
-    dislike,
-    alumnos,
-  } = video;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    axios
+      .get(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&id=${videoId}&key=${key}`
+      )
+      .then((response) => {
+        const { data } = response;
+        const singleVideoResults = data["items"];
+        setSingleVideo(singleVideoResults);
+      });
+  }, [videoId]);
+  useEffect(() => {
+    axios
+      .get(
+        `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${key}`
+      )
+      .then((response) => {
+        const { data } = response;
+        const commentsResults = data["items"];
+        setComments(commentsResults);
+      });
+  }, [videoId]);
 
   return (
-    <div className="videoplayer">
-      <div className="videoplayer__videodetails">
-        <div className="videoplayer__video">
-          <img className="video__imagen" src={`../images/${id}.jpg`} alt={titulo}/>
-        </div>
-        <div className="videoplayer__videoinfo">
-          <div className="videoinfo">
-            <div className="videoinfo__headline">
-              <h1>{titulo}</h1>
-            </div>
-            <div className="videoinfo__stats">
-              <p>
-                Visto {vistas} • {fecha2}
-              </p><Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
-              <div className="videoinfo__likes">
-                <SidebarIconos Icon={ThumbUpIcon} title={like} />
-                <SidebarIconos Icon={ThumbDownIcon} title={dislike} />
-                <SidebarIconos Icon={ReplyIcon} title="COMPARTIR" />
-                <SidebarIconos Icon={PlaylistAddIcon} title="GUARDAR" />
-                <SidebarIconos Icon={MoreHorizIcon} title="" />
-              </div>
-</Link>
-            </div>
+    <>
+      <div className="singleVideo">
+        <VideoPlayer video={videoId} />
+        {singleVideo.map((singleVideoResponse) => (
+          <>
+            <VideoInfo
+              title={singleVideoResponse.snippet.title}
+              views={singleVideoResponse.statistics.viewCount}
+              date={singleVideoResponse.snippet.publishedAt}
+              likes={singleVideoResponse.statistics.likeCount}
+              dislikes={singleVideoResponse.statistics.dislikeCount}
+              tags={singleVideoResponse.snippet.tags}
+            />
             <hr />
-            <div className="videoinfo__channel">
-              <div>
-              <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
-                <Avatar
-                  className="videoinfo__avatar"
-                  alt={canal}
-                  src={`../images/${imagenCanal}.jpg`}
+            <VideoDescription
+              description={singleVideoResponse.snippet.description}
+            />
+          </>
+        ))}
+        <hr />
+        <div
+          className="singleVideo__comments"
+          onClick={() => toggleComments()}
+          style={expandComments !== "closed" ? expandedBlock : null}
+        >
+          <UnfoldMoreIcon className="singleVideo_expandComments" />
+          <div className="singleVideo__container">
+            <h3>Comentarios</h3>
+            {comments.map((comment) => (
+              <>
+                <VideoComment
+                  avatar={
+                    comment.snippet.topLevelComment.snippet
+                      .authorProfileImageUrl
+                  }
+                  author={
+                    comment.snippet.topLevelComment.snippet.authorDisplayName
+                  }
+                  date={comment.snippet.topLevelComment.snippet.publishedAt}
+                  text={comment.snippet.topLevelComment.snippet.textOriginal}
                 />
-</Link>
-                <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
-                <div className="videoinfo__channelinfo">
-                  <h3 className="videoinfo__channeltitle">{canal}</h3>
-                  <p className="videoinfo__channelsubs">{alumnos}</p>
-                </div>
-</Link>
-              </div>
-              <div className="videoinfo__subscribe">
-                <Button
-                  href="../resources/test.pdf"
-                  download="test.pdf"
-                  variant="contained"
-                  color="secondary"
-                  className={classes.button}
-                  startIcon={<GetAppIcon />}
-                >
-                  DESCARGAR CURSO
-                </Button>
-                <Link
-                  to="/under"
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  <Button variant="contained" color="secondary">
-                    INSCRIBIRSE
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="videoinfo__channeldesc">
-              <p>{descripcion}</p>
-            </div>
+              </>
+            ))}
           </div>
         </div>
       </div>
-      <div className="videoplayer__suggested">
-        <VideosRecomendados />
-      </div>
-    </div>
+      <VideoSidebar />
+    </>
   );
 };
-
-export default VideoScreen;
+export default withRouter(VideoScreen);

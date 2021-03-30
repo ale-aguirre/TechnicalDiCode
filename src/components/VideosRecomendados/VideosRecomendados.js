@@ -1,34 +1,44 @@
-import React from "react";
-import "./VideosR.css";
+import React, { useEffect, useContext } from "react";
 import VideoCard from "../VideoCard/VideoCard";
-import {data} from '../../data'
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import { green } from '@material-ui/core/colors';
+import "./VideosR.css";
+import { Link } from "react-router-dom";
+import { VideoContext } from "../../VideoContext";
+import { numberWithCommas } from "./../../Utilities";
+import WhatsApp from "../Whatsapp/Whatsapp";
 
-const useStyles = makeStyles((theme) => ({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  }
-}));
+//libreria para analizar, validar, manipular y dar formato a las fechas.
+const moment = require("moment");
+require("moment-duration-format");
 
 const VideosRecomendados = () => {
-  const classes = useStyles();
+  const [apiVideos, setApiVideos] = useContext(VideoContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
-    <div className="videosR">
-      <div className="videosR__videos animate__animated animate__fadeIn " >
-        {data.map((sala) => (
-          <VideoCard key={sala.id} {...sala} /> 
+    <section className="VideosR">
+      <div className="VideosR__wrapper">
+        {apiVideos.map((apiVideo) => (
+          <Link to={`/video/${apiVideo.snippet.channelId}/${apiVideo.id}`}>
+            <VideoCard
+              key={apiVideo.id}
+              title={apiVideo.snippet.title}
+              thumbnail={apiVideo.snippet.thumbnails.high.url}
+              author={apiVideo.snippet.channelTitle}
+              views={numberWithCommas(apiVideo.statistics.viewCount)}
+              timestamp={moment(apiVideo.snippet.publishedAt).fromNow()}
+              duration={moment
+                .duration(apiVideo.contentDetails.duration)
+                .format("hh:mm:ss")}
+              live={apiVideo.snippet.liveBroadcastContent}
+            />
+          </Link>
         ))}
       </div>
-        <Fab style={{ color: green[500] }} className={classes.fab}>
-          <WhatsAppIcon style={{ fontSize: 40 }} />
-        </Fab>
-    </div>
+      <WhatsApp />
+    </section>
   );
 };
 
