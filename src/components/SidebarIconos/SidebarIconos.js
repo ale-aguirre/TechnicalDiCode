@@ -1,7 +1,6 @@
 import React from 'react'
 import './SidebarIconos.css'
 
-
 const SidebarIconos = ({Icon,selected,title}) => {
     return (
         <div className={`sidebar__Container ${selected && "selected"}`}>

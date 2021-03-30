@@ -16,22 +16,7 @@ const SearchPage = () => {
         subs={Canal.subs}
         descripcion={Canal.descripcion}
       />
-
       <hr />
-      {/* {videoRows.map((item) => {
-        return (
-          <Link key={item.videoId} to={`/video/${item.videoId}`}>
-            <VideoRow
-              title={item.title}
-              image={item.image}
-              views={item.views}
-              timestamp={item.timestamp}
-              channel={item.channel}
-              description={item.description}
-            />
-          </Link>
-        );
-      })} */}
     </div>
   );
 };
