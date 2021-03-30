@@ -9,7 +9,7 @@ const UnderConstruction = () => {
         <p>
           Perdon por el inconveniente, todavia esta en desarrollo 
           la aplicacion. Si usted necesita mas ayuda{" "}
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aguirrealexis.cba@gmail.com" target="_blank" rel="noreferrer">contacteme</a>, de igual forma seguira en
+          <a className="construct" href="https://mail.google.com/mail/?view=cm&fs=1&to=aguirrealexis.cba@gmail.com" target="_blank" rel="noreferrer">contacteme</a>, de igual forma seguira en
           desarrollo para un futuro cercano.
         </p>
         <p>&mdash; Muchas gracias!</p>

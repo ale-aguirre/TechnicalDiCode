@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -15,7 +15,15 @@ import { selectUser } from "../Auth/features/userSlice";
 
 const Header = () => {
   const user = useSelector(selectUser);
+  const [searchMobile, setSearchMobile] = useState("closed");
+  const [inputSearch, setInputSeach] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  const iconFill = {
+    fill: "#605951",
+  };
   return (
     <div className="header">
       <div className="header__izquierda">
@@ -28,12 +36,26 @@ const Header = () => {
           />
         </Link>
       </div>
-      <div className="header__input">
-        <input placeholder="Buscar" type="text" />
-        <SearchIcon className="header__buscador" />
+      <div
+        className="header__searchBox"
+        style={{ display: searchMobile === "open" ? "block" : "none" }}
+      >
+        <form onSubmit={handleSubmit}>
+          <input 
+          placeholder="Buscar" 
+          type="text"
+          onChange={(e) => setInputSeach(e.target.value)}
+          value={inputSearch} />
+          <Link to={`/search/${inputSearch}`}>
+            <button type="submit">
+              <SearchIcon style={iconFill} />
+            </button>
+          </Link>
+        </form>
       </div>
 
       <div className="header__iconos">
+        
         <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
           <VideoCallIcon className="header__icono" />
         </Link>
