@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const VideoDuration = ({ duration }) => {
-    return (
-        <span className="videoCard__duration">{duration}</span>
-    )
-}
+  return <span className="videoCard__duration">{duration}</span>;
+};
 
-export default VideoDuration
+export default VideoDuration;

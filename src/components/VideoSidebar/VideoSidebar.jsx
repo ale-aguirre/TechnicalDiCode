@@ -3,10 +3,11 @@ import { VideoContext } from "../../VideoContext";
 import { Link } from "react-router-dom";
 import VideoResult from "../VideoResult/VideoResult";
 import "./VideoSidebar.css";
-
+//libreria para analizar, validar, manipular y dar formato a las fechas.
 const moment = require("moment");
 require("moment-duration-format");
 
+//videos Recomendados en la seccion derecha una vez ingresando a /:videoId
 const VideoSidebar = () => {
   const [apiVideos, setApiVideos] = useContext(VideoContext);
   const numberWithCommas = (num) => {

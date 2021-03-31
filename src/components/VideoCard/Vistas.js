@@ -4,7 +4,7 @@ const VideoNumbers = ({ views, timestamp }) => {
   return (
     <div className="videoCard__numbers">
       {views !== undefined ? (
-        <span className="videoCard__views">{views} views</span>
+        <span className="videoCard__views">{views} Vistas</span>
       ) : null}
       <span className="videoCard__timestamp">{timestamp}</span>
     </div>
