@@ -22,7 +22,7 @@ const Sidebar = () => {
       <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
         <SidebarIconos Icon={SubscriptionsIcon} title="Subscripciones" />
       </Link>
-      <hr />
+      <hr className="sidebar__separator"/>
       <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
         <SidebarIconos Icon={VideoLibraryIcon} title="Biblioteca" />
       </Link>
@@ -41,7 +41,7 @@ const Sidebar = () => {
       <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
         <SidebarIconos Icon={ExpandMoreIcon} title="Ver mas" />
       </Link>
-      <hr />
+      <hr className="sidebar__separator"/>
     </div>
   );
 };

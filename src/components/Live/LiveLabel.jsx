@@ -4,7 +4,7 @@ const LiveLabel = ({ live }) => {
   return (
     <>
       {live === "live" ? (
-        <span className="videoCard__live">live now</span>
+        <span className="videoCard__live">EN VIVO</span>
       ) : null}
     </>
   );
