@@ -3,20 +3,29 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import VideoCallIcon from "@material-ui/icons/VideoCall";
-import AppsIcon from "@material-ui/icons/Apps";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Logout from "../Auth/Login/Logout";
 import FaceIcon from "@material-ui/icons/Face";
-
 import { useSelector } from "react-redux";
 import { selectUser } from "../Auth/features/userSlice";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Header = () => {
   const user = useSelector(selectUser);
-  const [searchMobile, setSearchMobile] = useState("closed");
+  // eslint-disable-next-line
+  const [searchMobile, setSearchMobile] = useState("open");
   const [inputSearch, setInputSeach] = useState("");
+
+  // eslint-disable-next-line
+  const [open, setOpen] = React.useState(true);
+
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+// eslint-disable-next-line
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,25 +36,19 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__izquierda">
-        <MenuIcon />
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <img
-            className="header__logo"
-            src="https://i.ibb.co/mcMVvkM/image.png"
-            alt="logo"
-          />
-        </Link>
+        {/* <Superior /> */}
       </div>
       <div
         className="header__searchBox"
         style={{ display: searchMobile === "open" ? "block" : "none" }}
       >
         <form onSubmit={handleSubmit}>
-          <input 
-          placeholder="Buscar" 
-          type="text"
-          onChange={(e) => setInputSeach(e.target.value)}
-          value={inputSearch} />
+          <input
+            placeholder="Buscar"
+            type="text"
+            onChange={(e) => setInputSeach(e.target.value)}
+            value={inputSearch}
+          />
           <Link to={`/search/${inputSearch}`}>
             <button type="submit">
               <SearchIcon style={iconFill} />
@@ -55,16 +58,6 @@ const Header = () => {
       </div>
 
       <div className="header__iconos">
-        
-        <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
-          <VideoCallIcon className="header__icono" />
-        </Link>
-        <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
-          <AppsIcon className="header__icono" />
-        </Link>
-        <Link to="/under" style={{ color: "inherit", textDecoration: "none" }}>
-          <NotificationsIcon className="header__icono" />
-        </Link>
         <Link to="/login" style={{ color: "inherit", textDecoration: "none" }}>
           {user ? (
             <FaceIcon color="primary" />
@@ -74,6 +67,22 @@ const Header = () => {
           {user ? <Logout /> : null}
         </Link>
       </div>
+
+      <div className="navbar">
+        <Link to="#" className="menu-bars">
+          <MenuIcon onClick={showSidebar} />
+        </Link>
+      </div>
+      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+        <ul className="nav-menu-items" onClick={showSidebar}>
+          <li className="navbar-toggle">
+            <Link to="#" className="menu-bars">
+              <MenuIcon />
+            </Link>
+          </li>
+          <Sidebar />
+        </ul>
+      </nav>
     </div>
   );
 };

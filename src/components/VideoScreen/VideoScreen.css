@@ -164,7 +164,7 @@ span.singleVideo__tag {
     padding: 0;
   }
   .singleVideo {
-    max-width: 70%;
+    max-width: 100%;
     flex: 0.8;
   }
   .singleVideo__buttons button span {

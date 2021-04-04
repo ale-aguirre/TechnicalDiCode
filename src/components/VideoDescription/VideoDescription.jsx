@@ -84,7 +84,7 @@ const VideoDescription = (props) => {
         onClick={() => toggleDescription()}
         className="singleVideo__showDescription"
       >
-        {expandDescription !== "closed" ? "Show less" : "Show more"}
+        {expandDescription !== "closed" ? "Ver Menos" : "Ver Mas"}
       </Button>
     </div>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { numberWithCommas } from "../../Utilities";
 import Avatar from "@material-ui/core/Avatar";
 const moment = require("moment");
 require("moment-duration-format");

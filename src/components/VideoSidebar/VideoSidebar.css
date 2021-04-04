@@ -1,5 +1,6 @@
 .videoSidebar {
   padding: 0 10px;
+  margin-top: 65px;
 }
 @media (min-width: 992px) {
   .videoSidebar {
