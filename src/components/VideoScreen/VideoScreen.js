@@ -19,10 +19,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-
 import Sidebar from "../Sidebar/Sidebar";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -178,145 +176,150 @@ const VideoScreen = (props) => {
 
   return (
     <>
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon style={{ cursor: "pointer", color: "black" }} />
-          </IconButton>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <img
-              className="header__logo"
-              src="https://i.ibb.co/mcMVvkM/image.png"
-              alt="logo"
-            />
-          </Link>
-          <div className={classes.search} />
-          <div className="header__searchBox">
-            <div
-              style={{
-                color: "black",
-                display: searchMobile === "open" ? "block" : "none",
-              }}
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
             >
-              <form onSubmit={handleSubmit}>
-                <input
-                  placeholder="Buscar"
-                  type="text"
-                  onChange={(e) => setInputSeach(e.target.value)}
-                  value={inputSearch}
-                />
-                <Link to={`/search/${inputSearch}`}>
-                  <button type="submit">
-                    <SearchIcon style={iconFill} />
-                  </button>
-                </Link>
-              </form>
-            </div>
-          </div>
-          <div className={classes.root} />
-          <div className="header__iconos">
-            <Link to="/profile" style={{ color: "black", textDecoration: "none" }}>
-              {user ? (
-                <FaceIcon color="primary" />
-              ) : (
-                <AccountCircleIcon className="header__icono" />
-              )}
-              
-              {user ? <Logout /> : <Redirect to="/" />}
+              <MenuIcon style={{ cursor: "pointer", color: "black" }} />
+            </IconButton>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <img
+                className="header__logo"
+                src="https://i.ibb.co/mcMVvkM/image.png"
+                alt="logo"
+              />
             </Link>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
+            <div className={classes.search} />
+            <div className="header__searchBox">
+              <div
+                style={{
+                  color: "black",
+                  display: searchMobile === "open" ? "block" : "none",
+                }}
+              >
+                <form onSubmit={handleSubmit}>
+                  <input
+                    placeholder="Buscar"
+                    type="text"
+                    onChange={(e) => setInputSeach(e.target.value)}
+                    value={inputSearch}
+                  />
+                  <Link to={`/search/${inputSearch}`}>
+                    <button type="submit">
+                      <SearchIcon style={iconFill} />
+                    </button>
+                  </Link>
+                </form>
+              </div>
+            </div>
+            <div className={classes.root} />
+            <div className="header__iconos">
+              <Link
+                to="/profile"
+                style={{ color: "black", textDecoration: "none" }}
+              >
+                {user ? (
+                  <FaceIcon color="primary" />
+                ) : (
+                  <AccountCircleIcon className="header__icono" />
+                )}
+
+                {user ? <Logout /> : <Redirect to="/" />}
+              </Link>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? <MenuIcon /> : <MenuIcon />}
-          </IconButton>
-        </div>
-        <List>
-          <Sidebar />
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        
-        <div className="singleVideo">
-        <VideoPlayer video={videoId} />
-        
-        {singleVideo.map((singleVideoResponse) => (
-          <>
-            <VideoInfo
-              title={singleVideoResponse.snippet.title}
-              views={singleVideoResponse.statistics.viewCount}
-              date={singleVideoResponse.snippet.publishedAt}
-              likes={singleVideoResponse.statistics.likeCount}
-              dislikes={singleVideoResponse.statistics.dislikeCount}
-              tags={singleVideoResponse.snippet.tags}
-            />
-            <hr />
-            <VideoDescription
-              description={singleVideoResponse.snippet.description}
-            />
-          </>
-        ))}
-        <hr />
-        <div
-          className="singleVideo__comments"
-          onClick={() => toggleComments()}
-          style={expandComments !== "closed" ? expandedBlock : null}
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
         >
-          <UnfoldMoreIcon className="singleVideo_expandComments" />
-          <div className="singleVideo__container">
-            <h3>Comentarios</h3>
-            {comments.map((comment) => (
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? <MenuIcon /> : <MenuIcon />}
+            </IconButton>
+          </div>
+          <List>
+            <Sidebar />
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+
+          <div className="singleVideo">
+            <VideoPlayer video={videoId} />
+
+            {singleVideo.map((singleVideoResponse) => (
               <>
-                <VideoComment
-                  avatar={
-                    comment.snippet.topLevelComment.snippet
-                      .authorProfileImageUrl
-                  }
-                  author={
-                    comment.snippet.topLevelComment.snippet.authorDisplayName
-                  }
-                  date={comment.snippet.topLevelComment.snippet.publishedAt}
-                  text={comment.snippet.topLevelComment.snippet.textOriginal}
+                <VideoInfo
+                  title={singleVideoResponse.snippet.title}
+                  views={singleVideoResponse.statistics.viewCount}
+                  date={singleVideoResponse.snippet.publishedAt}
+                  likes={singleVideoResponse.statistics.likeCount}
+                  dislikes={singleVideoResponse.statistics.dislikeCount}
+                  tags={singleVideoResponse.snippet.tags}
+                />
+                <hr />
+                <VideoDescription
+                  description={singleVideoResponse.snippet.description}
                 />
               </>
             ))}
+            <hr />
+            <div
+              className="singleVideo__comments"
+              onClick={() => toggleComments()}
+              style={expandComments !== "closed" ? expandedBlock : null}
+            >
+              <UnfoldMoreIcon className="singleVideo_expandComments" />
+              <div className="singleVideo__container">
+                <h3>Comentarios</h3>
+                {comments.map((comment) => (
+                  <>
+                    <VideoComment
+                      avatar={
+                        comment.snippet.topLevelComment.snippet
+                          .authorProfileImageUrl
+                      }
+                      author={
+                        comment.snippet.topLevelComment.snippet
+                          .authorDisplayName
+                      }
+                      date={comment.snippet.topLevelComment.snippet.publishedAt}
+                      text={
+                        comment.snippet.topLevelComment.snippet.textOriginal
+                      }
+                    />
+                  </>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </main>
+        <VideoSidebar />
       </div>
-      </main>
-      <VideoSidebar />
-    </div>
-      
     </>
   );
 };

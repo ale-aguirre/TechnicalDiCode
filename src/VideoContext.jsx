@@ -5,7 +5,7 @@ export const VideoContext = createContext();
 export const VideoProvider = (props) => {
   const [apiVideos, setApiVideos] = useState([]);
 
-  const key = "AIzaSyB8B3tbT0q4CRBOjPrPDCUHzm_Pf7qiWDU";
+  const key = "AIzaSyCnbZTN9qmVvXXomvDixsf-Q9xVYltHH-U";
   const maxResults = 30;
   useEffect(() => {
     axios

@@ -18,7 +18,7 @@ const Whatsapp = () => {
     <div>
       <a
         href="https://wa.me/+543512618905"
-        class="whatsapp_float"
+        className="whatsapp_float"
         target="_blank"
         rel="noopener noreferrer"
       >
