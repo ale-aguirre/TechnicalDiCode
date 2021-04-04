@@ -14,6 +14,7 @@ const VideoInfo = ({ title, views, date, likes, dislikes, tags }) => {
     let numberlikes = parseInt(likes);
     let numberdislikes = parseInt(dislikes);
     let totalReviews = numberlikes + numberdislikes;
+    // eslint-disable-next-line
     let percentage = Math.round((numberlikes / totalReviews) * 100);
   };
   const likeBarWidth = {

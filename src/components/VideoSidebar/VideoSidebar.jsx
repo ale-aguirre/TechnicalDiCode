@@ -9,6 +9,7 @@ require("moment-duration-format");
 
 //videos Recomendados en la seccion derecha una vez ingresando a /:videoId
 const VideoSidebar = () => {
+  // eslint-disable-next-line
   const [apiVideos, setApiVideos] = useContext(VideoContext);
   const numberWithCommas = (num) => {
     if (num !== undefined) {

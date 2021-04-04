@@ -1,11 +1,13 @@
 .VideosR {
-    display: flex-start;
+    display: flex;
     justify-content: center;
   }
   .VideosR__wrapper {
     display: flex;
     flex-wrap: wrap;
     padding: 0 10px;
+    /* width: 1500px; */
+    /* margin-left: 225px; */
     margin-top: 25px;
     justify-content: center;
   }
@@ -14,7 +16,7 @@
       flex: 0.87;
     }
     .VideosR__wrapper{
-        justify-content: start;
+        justify-content: flex;
         padding: 0 25px;
     }
   }

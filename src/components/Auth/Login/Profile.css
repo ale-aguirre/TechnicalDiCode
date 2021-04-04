@@ -1,9 +1,10 @@
 .perfil__container {
-  height: 500px;
+  height: 400px;
   display: flex;
   align-items: center;
+  margin-top: 160px;
   justify-content: space-between;
-  
+  background-image: url("https://uhdwallpapers.org/uploads/converted/18/04/16/neon-stream-1366x768_46969-mm-90.jpg");
 }
 /* .perfil__card{
 
