@@ -4,4 +4,4 @@ export const numberWithCommas = (num) => {
   }
 };
 
-export const key = "AIzaSyCnbZTN9qmVvXXomvDixsf-Q9xVYltHH-U ";
+export const key = "AIzaSyB8B3tbT0q4CRBOjPrPDCUHzm_Pf7qiWDU";
